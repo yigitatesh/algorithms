@@ -85,3 +85,35 @@ def merge(left, right):
         sorted_list.append(right.pop(0))
         
     return sorted_list
+
+## STOOGE SORT
+def stooge_sort(array):
+    """Stooge sort
+    Changes the list in place"""
+    _stooge_sort(array, 0, len(array)-1)
+
+def _stooge_sort(array, low, high):
+    if array[low] > array[high]:
+        array[low], array[high] = array[high], array[low]
+    if high - low <= 1:
+        return None
+    
+    dif = (high - low + 1) // 3
+    
+    _stooge_sort(array, low, high - dif)
+    _stooge_sort(array, low + dif, high)
+    _stooge_sort(array, low, high - dif)
+
+## BOGO SORT
+def bogo_sort(array):
+    """Bogo sort"""
+    new_array = array.copy()
+    is_sorted = False
+    while not is_sorted:
+        is_sorted = True
+        np.random.shuffle(new_array)
+        for i in range(len(new_array) - 1):
+            if new_array[i] > new_array[i+1]:
+                is_sorted = False
+                break
+    return new_array
