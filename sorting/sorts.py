@@ -1,3 +1,18 @@
+## BUBBLE SORT
+def bubble_sort_non_optimised(array):
+    """Bubble sort implementation"""
+    new_array = array.copy()
+    is_sorted = False
+    
+    while not is_sorted:
+        is_sorted = True
+        for i in range(0, len(new_array) - 1):
+            if new_array[i] > new_array[i+1]:
+                new_array[i], new_array[i+1] = new_array[i+1], new_array[i]
+                is_sorted = False
+    
+    return new_array
+
 def bubble_sort(array):
     """Bubble sort implementation
     Optimised:
@@ -16,6 +31,7 @@ def bubble_sort(array):
     
     return new_array
 
+## INSERTION SORT
 def insertion_sort(array):
     """Insertion sort implementation"""
     new_array = array.copy()
@@ -28,6 +44,7 @@ def insertion_sort(array):
     
     return new_array
 
+## SELECTION SORT
 def selection_sort(array):
     """Selection sort implementation"""
     new_array = array.copy()
@@ -43,6 +60,7 @@ def selection_sort(array):
     d
     return new_array      
 
+## MERGE SORT
 def merge_sort(array):
     """Merge sort implementation"""
     if len(array) > 1:
