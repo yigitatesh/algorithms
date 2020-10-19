@@ -86,6 +86,80 @@ def merge(left, right):
         
     return sorted_list
 
+## QUICK SORT
+def quick_sort(array):
+    """Quick sort in place"""
+    return _quick_sort(array, 0, len(array) - 1)
+
+def _quick_sort(array, left, right):
+    
+    if left >= right:
+        return None
+    # pick a pivot
+    pivot = array[left + (right - left) // 2]
+    index = partition(array, left, right, pivot)
+    _quick_sort(array, left, index - 1)
+    _quick_sort(array, index, right)
+
+def partition(array, left, right, pivot):
+    """sorts array by looking to pivot"""
+    while left <= right:
+        while array[left] < pivot:
+            left += 1
+        while array[right] > pivot:
+            right -= 1
+        
+        if left <= right:
+            # swap two numbers
+            array[left], array[right] = array[right], array[left]
+            left += 1
+            right -= 1
+            
+    return left
+
+## QUICK SORT PYTHONIC
+def quick_sort_simple(array):
+    """Quick sort that easy to understand"""
+    if len(array) < 2:
+        return array
+    # choose pivot
+    pivot = array.pop()
+    left = []
+    right = []
+    
+    for i in array:
+        if i < pivot:
+            left.append(i)
+        else:
+            right.append(i)
+    
+    return quick_sort_simple(left) + [pivot] + quick_sort_simple(right)
+
+## COUNT SORT
+def count_sort(array, low, high):
+    """Count sort
+    Every element must be integer
+    
+    Parameters
+    ----------
+    array: array or list to be sorted in place
+    low: min integer in array
+    high: max integer in array"""
+    # hash map of integers and frequencies
+    hash_map = {i: 0 for i in range(low, high + 1)}
+    for i in array:
+        hash_map[i] += 1
+    
+    # create new sorted array
+    length = len(array)
+    i = 0
+    for j in range(low, high + 1):
+        for _ in range(hash_map[j]):
+            array[i] = j
+            i += 1
+    
+    return array
+
 ## STOOGE SORT
 def stooge_sort(array):
     """Stooge sort
